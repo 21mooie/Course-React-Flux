@@ -5,6 +5,7 @@ export default function AboutPage() {
         <>
             <h2>About</h2>
             <p>This app uses React.</p>
+            <a href='/'>Back</a>
         </>
     )
 }
