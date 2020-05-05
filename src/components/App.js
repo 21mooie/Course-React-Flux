@@ -12,11 +12,12 @@ export default function App() {
     <div className="container-fluid">
       <Header />
       <Switch>
-        <Route path="/" exact component={HomePage} />
         <Route path="/course/:slug" component={ManageCoursePage} />
+        <Route path="/course" component={ManageCoursePage} />
         <Route path="/courses" component={CoursesPage} />
         <Route path="/about" component={AboutPage} />
         <Redirect from="/about-page" to="about" />
+        <Route path="/" exact component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
