@@ -1,4 +1,6 @@
 import { EventEmitter } from "events";
+import AppDispatcher from "../appDispatcher";
+
 
 const CHANGE_EVENT = "change";
 class CourseStore extends EventEmitter {
@@ -16,4 +18,9 @@ class CourseStore extends EventEmitter {
 }
 
 const store = new CourseStore();
+AppDispatcher.register(action => {
+  switch(action.actionType) {
+
+  }
+});
 export default store;
