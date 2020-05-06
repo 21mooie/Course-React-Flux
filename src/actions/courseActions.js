@@ -11,3 +11,13 @@ export function saveCourse(course) {
     });
   });
 }
+
+export function loadCourses() {
+  return courseApi.getCourses().then((courses) => {
+    // Hey dispatcher tell all stores that we got initial courses
+    dispatcher.dispatch({
+      actionType: actionTypes.LOAD_COURSES,
+      courses,
+    });
+  });
+}
