@@ -1,17 +1,39 @@
-version: 2.1
-orbs:
-  node: circleci/node@1.1.6
+---
 jobs:
   build-and-test:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
+      -
+        node/with-cache:
           steps:
-            - run: npm install
-            - run: npm test
+            -
+              run: "npm install"
+            -
+              run: "npm test"
+  deploy-dev:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      -
+        node/with-cache:
+          steps:
+            -
+              run: "echo ran deploy"
+orbs:
+  node: circleci/node@1.1.6
+version: 2.1
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  flux-pipeline:
+    jobs:
+      - build-and-test
+      -
+        deploy-dev:
+          filters:
+            branches:
+              only:
+                - develop
+          requires:
+            - build-and-test
