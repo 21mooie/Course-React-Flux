@@ -23,8 +23,8 @@ workflows:
     flux-pipeline:
       jobs:
         - build-and-test
-        - deploy-dev
-            requires:
+        - deploy-dev:
+            requires
               - build-and-test
             filters:
               branches:
