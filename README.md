@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). [![CircleCI](https://circleci.com/gh/21mooie/Course-React-Flux.svg?style=svg)](https://circleci.com/gh/21mooie/Course-React-Flux)
 
 ## Available Scripts
 
