@@ -6,4 +6,6 @@ describe("App", () => {
   it("should still trigger circleci build", () => {});
 
   it("should not trigger circleci build", () => {});
+
+  it("should fail circleci build not allowing pr to merge", () => {});
 });
