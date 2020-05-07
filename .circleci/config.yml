@@ -23,7 +23,7 @@ workflows:
     flux-pipeline:
       jobs:
         - build-and-test
-        - deploy-dev:
+        - deploy-dev
             requires:
               -build-and-test
             filters:
