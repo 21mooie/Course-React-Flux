@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  master-cicd:
+  build-and-test:
     executor:
       name: node/default
     steps:
@@ -14,7 +14,4 @@ jobs:
 workflows:
     build-and-test:
       jobs:
-        - master-cicd:
-            filters:
-              branches:
-                only: master
+        - build-and-test
