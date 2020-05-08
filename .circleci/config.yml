@@ -9,13 +9,9 @@ jobs:
         node/with-cache:
           steps:
             -
-              command: "npm install"
-              name: "Install Dependencies"
-              run: ~
+              run: "npm install"
             -
-              command: "npm test"
-              name: "Install Dependencies"
-              run: ~
+              run: "npm test"
   deploy:
     executor:
       name: node/default
@@ -24,20 +20,13 @@ jobs:
       -
         node/with-cache:
           steps:
-            -   name: "Build"
-                command: "npm build"
-                run: ~
-
-            - name: "Firebase Deploy"
-              command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
-              run: ~
-
-
+            -
+              run: "echo ran deploy"
 orbs:
   node: circleci/node@1.1.6
 version: 2.1
 workflows:
-  build-and-test:
+  flux-pipeline:
     jobs:
       - build-and-test
       -
