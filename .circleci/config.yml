@@ -1,6 +1,6 @@
 ---
 jobs:
-  install-and-test:
+  build-and-test:
     executor:
       name: node/default
     steps:
@@ -39,7 +39,7 @@ version: 2.1
 workflows:
   build-and-test:
     jobs:
-      - install-and-test
+      - build-and-test
       -
         deploy:
           filters:
