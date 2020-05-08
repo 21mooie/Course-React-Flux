@@ -1,6 +1,6 @@
 ---
 jobs:
-  build-and-test:
+  build_all:
     executor:
       name: node/default
     steps:
