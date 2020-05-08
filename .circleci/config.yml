@@ -23,7 +23,7 @@ jobs:
             -
               run: "npm run build"
             -
-              run: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+              run: './node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting'
   master_deploy:
     executor:
       name: node/default
