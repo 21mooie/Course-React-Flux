@@ -29,9 +29,11 @@ jobs:
       name: node/default
       steps:
         - checkout
-        - node/with-cache:
+        -
+          node/with-cache:
             steps:
-              - run: "echo just deployed for master"
+              -
+                run: "echo just deployed for master"
 orbs:
   node: circleci/node@1.1.6
 version: 2.1
