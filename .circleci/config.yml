@@ -37,7 +37,7 @@ orbs:
   node: circleci/node@1.1.6
 version: 2.1
 workflows:
-  flux-pipeline:
+  build-and-test:
     jobs:
       - install-and-test
       -
