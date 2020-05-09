@@ -39,12 +39,13 @@ workflows:
                 - master
   dev_workflow:
     jobs:
-      - build_all
+      - build_all:
+        filters:
+          branches:
+            only:
+              - develop
       - dev_deploy:
           filters:
             branches:
               only:
-                - development
-  prod_workflow:
-    jobs:
-      - build_all
+                - develop
