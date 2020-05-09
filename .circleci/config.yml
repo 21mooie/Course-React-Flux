@@ -12,6 +12,16 @@ jobs:
               run: "npm install"
             -
               run: "npm test"
+  get_approval:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      -
+        node/with-cache:
+          steps:
+            -
+              run: echo Approval gotten! Proceed with deploy!
   dev_deploy:
     executor:
       name: node/default
@@ -54,9 +64,17 @@ workflows:
             branches:
               only:
                 - develop
+      - get_approval:
+          type: approval
+          requires:
+            -build_all
+          filters:
+            branches:
+              only:
+                - develop
       - dev_deploy:
           requires:
-            - build_all
+            - get_approval
           filters:
             branches:
               only:
@@ -68,10 +86,17 @@ workflows:
             branches:
               only:
                 - master
-      - prod_deploy:
+      - get_approval:
           type: approval
           requires:
-            - build_all
+            -build_all
+          filters:
+            branches:
+              only:
+                - master
+      - prod_deploy:
+          requires:
+            - get_approval
           filters:
             branches:
               only:
