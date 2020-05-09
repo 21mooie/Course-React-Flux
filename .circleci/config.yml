@@ -55,7 +55,6 @@ workflows:
               only:
                 - develop
       - dev_deploy:
-          type: approval
           requires:
             - build_all
           filters:
