@@ -1,6 +1,6 @@
 ---
 jobs:
-  build-and-test:
+  build_all:
     executor:
       name: node/default
     steps:
@@ -12,7 +12,7 @@ jobs:
               run: "npm install"
             -
               run: "npm test"
-  deploy:
+  dev_deploy:
     executor:
       name: node/default
     steps:
@@ -21,19 +21,53 @@ jobs:
         node/with-cache:
           steps:
             -
-              run: "echo ran deploy"
+              run: "npm run build"
+            -
+              run: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+  prod_deploy:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      -
+        node/with-cache:
+          steps:
+            -
+              run: echo prod deploy
+
 orbs:
   node: circleci/node@1.1.6
 version: 2.1
 workflows:
-  flux-pipeline:
+  build_workflow:
     jobs:
-      - build-and-test
-      -
-        deploy:
+      - build_all:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+  dev_workflow:
+    jobs:
+      - build_all:
+          filters:
+            branches:
+              only:
+                - develop
+      - dev_deploy:
+          filters:
+            branches:
+              only:
+                - develop
+  prod_workflow:
+    jobs:
+      - build_all:
           filters:
             branches:
               only:
                 - master
-          requires:
-            - build-and-test
+      - prod_deploy:
+          filters:
+            branches:
+              only:
+                - master
