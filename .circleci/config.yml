@@ -59,9 +59,13 @@ workflows:
             - approval
           requires:
             - build_all
+          filters:
+            branches:
+              only:
+                - develop
       - dev_deploy:
           requires:
-            - build_all
+            - hold
           filters:
             branches:
               only:
@@ -73,10 +77,18 @@ workflows:
             branches:
               only:
                 - master
-      - prod_deploy:
-          type: approval
+      - hold:
+          type:
+            - approval
           requires:
             - build_all
+          filters:
+            branches:
+              only:
+                - master
+      - prod_deploy:
+          requires:
+            - hold
           filters:
             branches:
               only:
