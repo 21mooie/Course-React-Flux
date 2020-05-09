@@ -29,7 +29,7 @@ orbs:
   node: circleci/node@1.1.6
 version: 2.1
 workflows:
-  build_all:
+  build_workflow:
     jobs:
       - build_all:
           filters:
