@@ -69,25 +69,3 @@ workflows:
             branches:
               only:
                 - develop
-  prod_workflow:
-    jobs:
-      - build_all:
-          filters:
-            branches:
-              only:
-                - master
-      - get_approval:
-          type: approval
-          requires:
-            -build_all
-          filters:
-            branches:
-              only:
-                - master
-      - prod_deploy:
-          requires:
-            - get_approval
-          filters:
-            branches:
-              only:
-                - master
