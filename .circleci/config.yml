@@ -60,7 +60,7 @@ workflows:
             - build_all
       - dev_deploy:
           requires:
-            - build_all
+            - hold
           filters:
             branches:
               only:
