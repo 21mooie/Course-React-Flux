@@ -54,8 +54,11 @@ workflows:
             branches:
               only:
                 - develop
-      - dev_deploy:
+      - hold:
           type: approval
+          requires:
+            -build_all
+      - dev_deploy:
           requires:
             - build_all
           filters:
