@@ -57,7 +57,7 @@ workflows:
       - hold:
           type: approval
           requires:
-            -build_all
+            - build_all
       - dev_deploy:
           requires:
             - build_all
