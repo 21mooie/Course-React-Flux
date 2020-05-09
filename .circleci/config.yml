@@ -23,17 +23,8 @@ jobs:
             -
               run: "npm run build"
             -
-              run: './node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting'
-  master_deploy:
-    executor:
-      name: node/default
-      steps:
-        - checkout
-        -
-          node/with-cache:
-            steps:
-              -
-                run: "echo just deployed for master"
+              run: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+
 orbs:
   node: circleci/node@1.1.6
 version: 2.1
@@ -57,8 +48,3 @@ workflows:
   prod_workflow:
     jobs:
       - build_all
-      - master_deploy:
-          filters:
-            branches:
-              only:
-                - master
