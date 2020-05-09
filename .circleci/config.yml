@@ -35,15 +35,15 @@ workflows:
           filters:
             branches:
               ignore:
-                - development
+                - develop
                 - master
   dev_workflow:
     jobs:
       - build_all:
-        filters:
-          branches:
-            only:
-              - develop
+          filters:
+            branches:
+              only:
+                - develop
       - dev_deploy:
           filters:
             branches:
